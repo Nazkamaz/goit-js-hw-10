@@ -5,7 +5,10 @@ export default function fetchCountries(name){
     // console.log(name);
    return fetch(`https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flags,languages`)
     .then(response => {
-        return response.json();
+      if(response.ok)  {return response.json();}
+      
+        return Notiflix.Notify.failure("Oops, there is no country with that name")
+    
     })
     // .then(countries => {
     //     console.log(countries);
